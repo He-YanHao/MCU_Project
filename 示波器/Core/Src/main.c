@@ -10,5 +10,7 @@ int main(void)
     while(1)
     {
         Oscilloscope();
+        //Delay_Leve_Change();
+        //Oscilloscope_Num_OUT();
     }
 }

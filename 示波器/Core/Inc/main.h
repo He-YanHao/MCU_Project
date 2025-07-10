@@ -15,5 +15,8 @@
 
 uint8_t ADC_Num1[135] = {0};
 uint8_t ADC_Num2[135] = {0};
+uint16_t Delay_Num[11] = {0,1,2,5,10,20,50,100,200,500,1000};
+uint8_t Delay_Leve = 0;
+uint8_t KeyEXTI = 0;
 
 #endif
