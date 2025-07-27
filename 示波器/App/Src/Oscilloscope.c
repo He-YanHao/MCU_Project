@@ -32,7 +32,7 @@ void Delay_Leve_Change(void)
         }
         while(KeyEXTI != 0)// 等待定时器复位标志
         { 
-            __WFI();//低功耗优化
+            
         }
     }
 }

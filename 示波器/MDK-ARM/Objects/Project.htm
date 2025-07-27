@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Jul 09 03:48:20 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jul 15 16:21:24 2025
 <BR><P>
 <H3>Maximum Stack Usage =        120 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -695,10 +695,10 @@ Global Symbols
 <P><STRONG><a name="[8f]"></a>GPIO_Init</STRONG> (Thumb, 124 bytes, Stack size 24 bytes, stm32f4xx_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KeyEXTI_Init
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyADC_Init
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
 </UL>
 
 <P><STRONG><a name="[9b]"></a>GPIO_PinAFConfig</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, stm32f4xx_gpio.o(i.GPIO_PinAFConfig))
@@ -708,11 +708,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a2]"></a>GPIO_ResetBits</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteIndex
+<BR><BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteIndex
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteData_16Bit
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteData
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Reset
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
 </UL>
 
 <P><STRONG><a name="[9c]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_SetBits))
@@ -737,8 +737,8 @@ Global Symbols
 <P><STRONG><a name="[88]"></a>Gui_DrawLine</STRONG> (Thumb, 178 bytes, Stack size 40 bytes, lcd.o(i.Gui_DrawLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = Gui_DrawLine &rArr; Gui_DrawPoint &rArr; LCD_SetRegion &rArr; LCD_WriteIndex &rArr; SPI_WriteData
 </UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetXY
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gui_DrawPoint
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gui_DrawPoint
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetXY
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Oscilloscope_UI_Init
 </UL>
@@ -789,13 +789,13 @@ Global Symbols
 <P><STRONG><a name="[98]"></a>LCD_GPIO_Init</STRONG> (Thumb, 212 bytes, Stack size 64 bytes, lcd.o(i.LCD_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = LCD_GPIO_Init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHB1PeriphClockCmd
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
@@ -804,11 +804,11 @@ Global Symbols
 <P><STRONG><a name="[9f]"></a>LCD_Init</STRONG> (Thumb, 548 bytes, Stack size 8 bytes, lcd.o(i.LCD_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LCD_Init &rArr; LCD_GPIO_Init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteIndex
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteIndex
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteData
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Reset
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -829,9 +829,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteIndex
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteData
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetXY
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gui_DrawPoint
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetXY
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gui_DrawPoint
 </UL>
 
 <P><STRONG><a name="[89]"></a>LCD_SetXY</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, lcd.o(i.LCD_SetXY))
@@ -845,9 +845,9 @@ Global Symbols
 <P><STRONG><a name="[a1]"></a>LCD_WriteData</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, lcd.o(i.LCD_WriteData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LCD_WriteData &rArr; SPI_WriteData
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WriteData
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WriteData
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetRegion
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
@@ -856,20 +856,20 @@ Global Symbols
 <P><STRONG><a name="[8c]"></a>LCD_WriteData_16Bit</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, lcd.o(i.LCD_WriteData_16Bit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LCD_WriteData_16Bit &rArr; SPI_WriteData
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WriteData
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WriteData
 </UL>
-<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gui_DrawPoint
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gui_DrawPoint
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
 </UL>
 
 <P><STRONG><a name="[97]"></a>LCD_WriteIndex</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, lcd.o(i.LCD_WriteIndex))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LCD_WriteIndex &rArr; SPI_WriteData
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WriteData
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WriteData
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetRegion
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
@@ -959,10 +959,10 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40xx.o(RESET)
 </UL>
 <P><STRONG><a name="[8e]"></a>RCC_AHB1PeriphClockCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(i.RCC_AHB1PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<BR><BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KeyEXTI_Init
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyADC_Init
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
 </UL>
 
 <P><STRONG><a name="[93]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(i.RCC_APB1PeriphClockCmd))
@@ -970,8 +970,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[99]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(i.RCC_APB2PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyADC_Init
+<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyADC_Init
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Init
 </UL>
 
 <P><STRONG><a name="[77]"></a>RCC_APB2PeriphResetCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(i.RCC_APB2PeriphResetCmd))
@@ -1098,12 +1098,12 @@ Global Symbols
 <P><STRONG><a name="[6e]"></a>main</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = main &rArr; Oscilloscope_UI_Init &rArr; Gui_DrawLine &rArr; Gui_DrawPoint &rArr; LCD_SetRegion &rArr; LCD_WriteIndex &rArr; SPI_WriteData
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;board_Init
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;board_Init
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Oscilloscope_UI_Init
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Oscilloscope
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyADC_Init
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
