@@ -395,6 +395,11 @@
               <FileType>1</FileType>
               <FilePath>..\App\Src\MyCAN.c</FilePath>
             </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\Src\usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -404,6 +409,11 @@
               <FileName>BSP_LED.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\Src\BSP_LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_KEY.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\Src\BSP_KEY.c</FilePath>
             </File>
           </Files>
         </Group>

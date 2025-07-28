@@ -17,10 +17,10 @@ void MyCAN_Init(void)
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	CAN_InitTypeDef CAN_InitStructure;
-	//CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;// 工作模式：正常模式
-    CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack; // 工作模式：环回模式
+	CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;// 工作模式：正常模式
+    //CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack; // 工作模式：环回模式
     
-	CAN_InitStructure.CAN_Prescaler = 48;		//波特率 = 36M / 48 / (1 + 2 + 3) = 125K
+	CAN_InitStructure.CAN_Prescaler = 6;		//波特率 = 36M / 48 / (1 + 2 + 3) = 125K
 	CAN_InitStructure.CAN_BS1 = CAN_BS1_2tq;
 	CAN_InitStructure.CAN_BS2 = CAN_BS2_3tq;
 	CAN_InitStructure.CAN_SJW = CAN_SJW_2tq;

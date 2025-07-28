@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun Jul 27 23:42:31 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Jul 28 23:44:11 2025
 <BR><P>
-<H3>Maximum Stack Usage =         32 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        148 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-SystemInit &rArr; system_clock_config &rArr; system_clock_240m_25m_hxtal
+main &rArr; MyUSART_Init &rArr; usart_baudrate_set &rArr; rcu_clock_freq_get
 <P>
 <H3>
 Mutually Recursive functions
@@ -127,7 +127,7 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(.text)
 </UL>
-<P><STRONG><a name="[7f]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[9c]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[67]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -137,17 +137,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[80]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[9d]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[81]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[9e]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[82]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[9f]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[83]"></a>__rt_lib_shutdown_fini</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry12b.o(.ARM.Collect$$$$0000000E))
+<P><STRONG><a name="[a0]"></a>__rt_lib_shutdown_fini</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry12b.o(.ARM.Collect$$$$0000000E))
 
-<P><STRONG><a name="[84]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[a1]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000F))
 
-<P><STRONG><a name="[85]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$00000011))
+<P><STRONG><a name="[a2]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$00000011))
 
 <P><STRONG><a name="[66]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_gd32f450_470.o(.text))
 
@@ -428,7 +428,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[86]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[a3]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[6a]"></a>BSP_LED1_OFF</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp_led.o(i.BSP_LED1_OFF))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = BSP_LED1_OFF
@@ -443,8 +443,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_toggle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
 </UL>
 
 <P><STRONG><a name="[6e]"></a>BSP_LED2_OFF</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp_led.o(i.BSP_LED2_OFF))
@@ -460,8 +459,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_toggle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
 </UL>
 
 <P><STRONG><a name="[70]"></a>BSP_LED3_OFF</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp_led.o(i.BSP_LED3_OFF))
@@ -477,8 +475,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_toggle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
 </UL>
 
 <P><STRONG><a name="[72]"></a>BSP_LED4_OFF</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp_led.o(i.BSP_LED4_OFF))
@@ -494,8 +491,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_toggle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
 </UL>
 
 <P><STRONG><a name="[74]"></a>BSP_LED_ALL_OFF</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, bsp_led.o(i.BSP_LED_ALL_OFF))
@@ -523,10 +519,10 @@ Global Symbols
 <P><STRONG><a name="[76]"></a>BSP_LED_Init</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, bsp_led.o(i.BSP_LED_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = BSP_LED_Init &rArr; gpio_output_options_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_OFF
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_output_options_set
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode_set
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_OFF
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -537,10 +533,13 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32f4xx_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(RESET)
 </UL>
-<P><STRONG><a name="[7d]"></a>Delay_ms</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, delay.o(i.Delay_ms))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay_ms
+<P><STRONG><a name="[7a]"></a>Delay_ms</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, delay.o(i.Delay_ms))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Delay_ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
 </UL>
 
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f4xx_it.o(i.HardFault_Handler))
@@ -549,6 +548,38 @@ Global Symbols
 <P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f4xx_it.o(i.MemManage_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(RESET)
 </UL>
+<P><STRONG><a name="[7c]"></a>MyCAN_Init</STRONG> (Thumb, 256 bytes, Stack size 40 bytes, mycan.o(i.MyCAN_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = MyCAN_Init &rArr; nvic_irq_enable
+</UL>
+<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_output_options_set
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode_set
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_af_set
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_struct_para_init
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_init
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_filter_init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_deinit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[83]"></a>MyUSART_Init</STRONG> (Thumb, 138 bytes, Stack size 8 bytes, usart.o(i.MyUSART_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = MyUSART_Init &rArr; usart_baudrate_set &rArr; rcu_clock_freq_get
+</UL>
+<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_transmit_config
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_receive_config
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_enable
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_baudrate_set
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_clock_enable
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_output_options_set
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_mode_set
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_af_set
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32f4xx_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(RESET)
 </UL>
@@ -561,29 +592,124 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, gd32f4xx_it.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysTick_Handler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_decrement
+<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_decrement
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(RESET)
 </UL>
 <P><STRONG><a name="[64]"></a>SystemInit</STRONG> (Thumb, 364 bytes, Stack size 16 bytes, system_gd32f4xx.o(i.SystemInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SystemInit &rArr; system_clock_config &rArr; system_clock_240m_25m_hxtal
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_config
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_soft_delay_
+<BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_config
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_soft_delay_
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(.text)
 </UL>
+<P><STRONG><a name="[8c]"></a>USART0_DATA</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, usart.o(i.USART0_DATA))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = USART0_DATA &rArr; usart_flag_get
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_flag_get
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_data_transmit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message
+</UL>
+
 <P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f4xx_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f450_470.o(RESET)
 </UL>
-<P><STRONG><a name="[87]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[a4]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[88]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[a5]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[89]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[a6]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[7a]"></a>delay_decrement</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, systick.o(i.delay_decrement))
+<P><STRONG><a name="[7f]"></a>can_deinit</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, gd32f4xx_can.o(i.can_deinit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = can_deinit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_enable
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_disable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+</UL>
+
+<P><STRONG><a name="[82]"></a>can_filter_init</STRONG> (Thumb, 262 bytes, Stack size 8 bytes, gd32f4xx_can.o(i.can_filter_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = can_filter_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+</UL>
+
+<P><STRONG><a name="[81]"></a>can_init</STRONG> (Thumb, 290 bytes, Stack size 16 bytes, gd32f4xx_can.o(i.can_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = can_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+</UL>
+
+<P><STRONG><a name="[94]"></a>can_message_receive</STRONG> (Thumb, 228 bytes, Stack size 8 bytes, gd32f4xx_can.o(i.can_message_receive))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = can_message_receive
+</UL>
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message
+</UL>
+
+<P><STRONG><a name="[96]"></a>can_message_transmit</STRONG> (Thumb, 332 bytes, Stack size 12 bytes, gd32f4xx_can.o(i.can_message_transmit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = can_message_transmit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_send_message
+</UL>
+
+<P><STRONG><a name="[91]"></a>can_receive_message</STRONG> (Thumb, 122 bytes, Stack size 40 bytes, mycan.o(i.can_receive_message))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = can_receive_message &rArr; USART0_DATA &rArr; usart_flag_get
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_transmit_states
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_struct_para_init
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message_length_get
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_message_receive
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART0_DATA
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[92]"></a>can_receive_message_length_get</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, gd32f4xx_can.o(i.can_receive_message_length_get))
+<BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message
+</UL>
+
+<P><STRONG><a name="[95]"></a>can_send_message</STRONG> (Thumb, 102 bytes, Stack size 48 bytes, mycan.o(i.can_send_message))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = can_send_message &rArr; can_transmit_states
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_transmit_states
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_struct_para_init
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_message_transmit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[80]"></a>can_struct_para_init</STRONG> (Thumb, 164 bytes, Stack size 8 bytes, gd32f4xx_can.o(i.can_struct_para_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = can_struct_para_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_send_message
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+</UL>
+
+<P><STRONG><a name="[93]"></a>can_transmit_states</STRONG> (Thumb, 104 bytes, Stack size 12 bytes, gd32f4xx_can.o(i.can_transmit_states))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = can_transmit_states
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_send_message
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message
+</UL>
+
+<P><STRONG><a name="[7b]"></a>delay</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, delay.o(i.delay))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
+</UL>
+
+<P><STRONG><a name="[89]"></a>delay_decrement</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, systick.o(i.delay_decrement))
 <BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
+</UL>
+
+<P><STRONG><a name="[7d]"></a>gpio_af_set</STRONG> (Thumb, 94 bytes, Stack size 20 bytes, gd32f4xx_gpio.o(i.gpio_af_set))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = gpio_af_set
+</UL>
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
 </UL>
 
 <P><STRONG><a name="[6b]"></a>gpio_bit_reset</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32f4xx_gpio.o(i.gpio_bit_reset))
@@ -600,54 +726,142 @@ Global Symbols
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED1_TOGGLE
 </UL>
 
+<P><STRONG><a name="[98]"></a>gpio_input_bit_get</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f4xx_gpio.o(i.gpio_input_bit_get))
+<BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
+</UL>
+
 <P><STRONG><a name="[78]"></a>gpio_mode_set</STRONG> (Thumb, 78 bytes, Stack size 20 bytes, gd32f4xx_gpio.o(i.gpio_mode_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = gpio_mode_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
 </UL>
 
 <P><STRONG><a name="[79]"></a>gpio_output_options_set</STRONG> (Thumb, 66 bytes, Stack size 20 bytes, gd32f4xx_gpio.o(i.gpio_output_options_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = gpio_output_options_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
 </UL>
 
-<P><STRONG><a name="[63]"></a>main</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = main &rArr; BSP_LED_Init &rArr; gpio_output_options_set
+<P><STRONG><a name="[97]"></a>key_scan</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, bsp_key.o(i.key_scan))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = key_scan &rArr; Delay_ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_input_bit_get
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[63]"></a>main</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = main &rArr; MyUSART_Init &rArr; usart_baudrate_set &rArr; rcu_clock_freq_get
+</UL>
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_ALL_TOGGLE
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED4_TOGGLE
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED3_TOGGLE
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED2_TOGGLE
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED1_TOGGLE
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART0_DATA
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_send_message
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_receive_message
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
+<P><STRONG><a name="[7e]"></a>nvic_irq_enable</STRONG> (Thumb, 186 bytes, Stack size 24 bytes, gd32f4xx_misc.o(i.nvic_irq_enable))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = nvic_irq_enable
+</UL>
+<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_priority_group_set
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+</UL>
+
+<P><STRONG><a name="[99]"></a>nvic_priority_group_set</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f4xx_misc.o(i.nvic_priority_group_set))
+<BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
+</UL>
+
+<P><STRONG><a name="[9b]"></a>rcu_clock_freq_get</STRONG> (Thumb, 264 bytes, Stack size 84 bytes, gd32f4xx_rcu.o(i.rcu_clock_freq_get))
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = rcu_clock_freq_get
+</UL>
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_baudrate_set
+</UL>
+
 <P><STRONG><a name="[77]"></a>rcu_periph_clock_enable</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gd32f4xx_rcu.o(i.rcu_periph_clock_enable))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LED_Init
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyCAN_Init
+</UL>
+
+<P><STRONG><a name="[90]"></a>rcu_periph_reset_disable</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gd32f4xx_rcu.o(i.rcu_periph_reset_disable))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_deinit
+</UL>
+
+<P><STRONG><a name="[8f]"></a>rcu_periph_reset_enable</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gd32f4xx_rcu.o(i.rcu_periph_reset_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_deinit
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_deinit
+</UL>
+
+<P><STRONG><a name="[85]"></a>usart_baudrate_set</STRONG> (Thumb, 224 bytes, Stack size 32 bytes, gd32f4xx_usart.o(i.usart_baudrate_set))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = usart_baudrate_set &rArr; rcu_clock_freq_get
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_clock_freq_get
+</UL>
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+</UL>
+
+<P><STRONG><a name="[8d]"></a>usart_data_transmit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f4xx_usart.o(i.usart_data_transmit))
+<BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART0_DATA
+</UL>
+
+<P><STRONG><a name="[84]"></a>usart_deinit</STRONG> (Thumb, 210 bytes, Stack size 8 bytes, gd32f4xx_usart.o(i.usart_deinit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usart_deinit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_enable
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rcu_periph_reset_disable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+</UL>
+
+<P><STRONG><a name="[88]"></a>usart_enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32f4xx_usart.o(i.usart_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+</UL>
+
+<P><STRONG><a name="[8e]"></a>usart_flag_get</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32f4xx_usart.o(i.usart_flag_get))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usart_flag_get
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART0_DATA
+</UL>
+
+<P><STRONG><a name="[86]"></a>usart_receive_config</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f4xx_usart.o(i.usart_receive_config))
+<BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
+</UL>
+
+<P><STRONG><a name="[87]"></a>usart_transmit_config</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f4xx_usart.o(i.usart_transmit_config))
+<BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyUSART_Init
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[7b]"></a>_soft_delay_</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, system_gd32f4xx.o(i._soft_delay_))
+<P><STRONG><a name="[8a]"></a>_soft_delay_</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, system_gd32f4xx.o(i._soft_delay_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _soft_delay_
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[7e]"></a>system_clock_240m_25m_hxtal</STRONG> (Thumb, 258 bytes, Stack size 8 bytes, system_gd32f4xx.o(i.system_clock_240m_25m_hxtal))
+<P><STRONG><a name="[9a]"></a>system_clock_240m_25m_hxtal</STRONG> (Thumb, 258 bytes, Stack size 8 bytes, system_gd32f4xx.o(i.system_clock_240m_25m_hxtal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = system_clock_240m_25m_hxtal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_config
+<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_config
 </UL>
 
-<P><STRONG><a name="[7c]"></a>system_clock_config</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_gd32f4xx.o(i.system_clock_config))
+<P><STRONG><a name="[8b]"></a>system_clock_config</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_gd32f4xx.o(i.system_clock_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = system_clock_config &rArr; system_clock_240m_25m_hxtal
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_240m_25m_hxtal
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_240m_25m_hxtal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
