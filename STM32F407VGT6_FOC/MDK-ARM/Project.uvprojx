@@ -315,7 +315,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -404,6 +404,11 @@
               <FileName>MyPID.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\App\Src\MyPID.c</FilePath>
+            </File>
+            <File>
+              <FileName>test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\Src\test.c</FilePath>
             </File>
           </Files>
         </Group>

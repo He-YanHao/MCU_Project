@@ -6,7 +6,9 @@
 #include "board.h"
 #include "MyPWM.h"
 #include "MyFOC.h"
+#include "MyPID.h"
 #include "CountSensor.h"
+#include "test.h"
 
 #define PWM_BIT 4095 
 

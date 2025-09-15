@@ -88,9 +88,6 @@ void NOT_Ud_Change(double U_q, double theta)//反变化
     MyFOC_NUM.DC_a = constrain((MyFOC_NUM.U_a+MyFOC_NUM.U_q)/DRIVE_MAX, 0, 1);
     MyFOC_NUM.DC_b = constrain((MyFOC_NUM.U_b+MyFOC_NUM.U_q)/DRIVE_MAX, 0, 1);
     MyFOC_NUM.DC_c = constrain((MyFOC_NUM.U_c+MyFOC_NUM.U_q)/DRIVE_MAX, 0, 1);
-//    MyFOC_NUM.DC_a = constrain((MyFOC_NUM.U_a/VoltagePowerSupply)+0.5, 0, 1);
-//    MyFOC_NUM.DC_b = constrain((MyFOC_NUM.U_b/VoltagePowerSupply)+0.5, 0, 1);
-//    MyFOC_NUM.DC_c = constrain((MyFOC_NUM.U_c/VoltagePowerSupply)+0.5, 0, 1);
 }
 
 void FOC_Change(double U_d, double U_q, double theta)//反变化

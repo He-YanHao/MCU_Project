@@ -1,7 +1,7 @@
 #include "CountSensor.h"
 
 volatile uint32_t CountSensorCount = 0;				//全局变量，用于计数
-uint32_t CountSensorCountLishi = 0;				//全局变量，用于计数
+volatile uint32_t CountSensorCountLishi = 0;		//全局变量，用于计数
 
 void CountSensor_Init(void)
 {
