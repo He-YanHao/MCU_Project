@@ -1,0 +1,36 @@
+#include "main.h"
+
+extern struct FOC_NUM MyFOC_NUM;
+extern volatile uint32_t CountSensorCount;
+uint8_t or = 0;				//全局变量，用于计数
+
+int main()
+{
+    Delay_Init();
+    CountSensor_Init();
+    board_BSP_USART_Init();
+    MyPWM_Init();
+
+    MyFOC_NUM.U_q = 500;     //坐标系q
+    MyFOC_NUM.theta = 5;   //角度
+    while(1)
+    {
+        //MyFOC_NUM.U_q += 0.5;
+        //MyFOC_NUM.U_q = U_q_Change(MyFOC_NUM.U_q);
+        MyFOC_NUM.theta += 0.05;
+        Theta_Change(MyFOC_NUM.theta);
+        NOT_Ud_Change(MyFOC_NUM.U_q, MyFOC_NUM.theta);
+ 
+        Change_PWM1(PWM_BIT*MyFOC_NUM.DC_a);
+        Change_PWM2(PWM_BIT*MyFOC_NUM.DC_b);
+        Change_PWM3(PWM_BIT*MyFOC_NUM.DC_c);
+
+        //printf("U_q:%.2f theta:%.2f U_a:%.2f U_b:%.2f U_c:%.2f\n",MyFOC_NUM.U_q,MyFOC_NUM.theta,MyFOC_NUM.U_a,MyFOC_NUM.U_b,MyFOC_NUM.U_c);
+        //printf("U_alpha:%.2f U_beta:%.2f DC_a:%.2f DC_b:%.2f DC_c:%.2f\n",MyFOC_NUM.U_alpha,MyFOC_NUM.U_beta,MyFOC_NUM.DC_a,MyFOC_NUM.DC_b,MyFOC_NUM.DC_c);
+        or = add_or();
+        if(0)
+        {
+            printf("CountSensorCount:%d\n",CountSensorCount);
+        }
+    }
+}
