@@ -1,128 +1,90 @@
 #include "MyDMA.h"
 
-volatile uint8_t SPI_DMA_Sign = 0;
 
-void SPI_DMA(uint32_t txBuffer, uint8_t BUFFER_SIZE)
+// 定义两个缓冲区
+volatile uint8_t adc_buffer0[ADC_BUFFER_SIZE];
+volatile uint8_t adc_buffer1[ADC_BUFFER_SIZE];
+
+// 标志变量
+volatile uint8_t dma_complete = 0;       // 传输完成标志
+volatile uint8_t *current_buffer;       // 指向当前可用的缓冲区
+
+void MyDMA_Init(void)
 {
-    // 复位DMA Stream
-    DMA_DeInit(DMA2_Stream3);  
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
-    //配置SPI TX DMA (内存->外设)
-    DMA_InitTypeDef DMA_InitStructure;
-    // 配置TX DMA
-    DMA_InitStructure.DMA_Channel = DMA_Channel_3;// SPI1_TX通道
-    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(SPI1->DR);// SPI数据寄存器地址
-    DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)txBuffer;// 发送缓冲区地址
-    DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;// 内存到外设
-    DMA_InitStructure.DMA_BufferSize = BUFFER_SIZE;// 传输数据量
-    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;// 外设地址不递增
-    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;// 内存地址递增
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;// 外设数据大小: 字节
-    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;// 内存数据大小: 字节
-    DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;// 正常模式(非循环)
-    DMA_InitStructure.DMA_Priority = DMA_Priority_High;// 高优先级
-    DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;// 禁用FIFO
-    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;// FIFO阈值(禁用时无效)
-    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;//单次传输
-    DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;//单次传输
-    DMA_Init(DMA2_Stream3, &DMA_InitStructure);
-
-    DMA_Cmd(DMA2_Stream3, ENABLE);  // 使能TX DMA
-    // 使能SPI的DMA请求
-    SPI_I2S_DMACmd(SPI1, SPI_I2S_DMAReq_Tx, ENABLE);
-}
-
-/**
-  * @brief NVIC中断配置
-  */
-void SPI_DMA_NVIC_Configuration(void)
-{
-    NVIC_InitTypeDef NVIC_InitStructure;
-    // 配置DMA传输完成中断
-    NVIC_InitStructure.NVIC_IRQChannel = DMA2_Stream3_IRQn;// SPI TX DMA中断
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init(&NVIC_InitStructure);
-    // 使能DMA传输完成中断
-    DMA_ITConfig(DMA2_Stream3, DMA_IT_TC, ENABLE);
-}
-
-/**
-  * @brief DMA2 Stream3中断处理 (SPI TX)
-  */
-void DMA2_Stream3_IRQHandler(void)
-{
-    // 检查传输完成标志
-    if(DMA_GetITStatus(DMA2_Stream3, DMA_IT_TCIF3))
-    {
-        // 清除传输完成标志
-        DMA_ClearITPendingBit(DMA2_Stream3, DMA_IT_TCIF3);
-
-        SPI_DMA_Sign = 1;
-    }
-}
-
-volatile uint8_t DMA_135_Sign = 1;
-//0 已完成    1 未完成
-
-void DMA_135(void)
-{
-    while(DMA_135_Sign);
-    DMA_135_Sign = 1;
-    // 复位DMA Stream
-    DMA_DeInit(DMA2_Stream1);
     // 使能DMA2时钟
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
-    // 配置DMA参数
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);   
+    // DMA2 Stream0配置 (ADC1使用DMA2 Stream0/Channel0)
     DMA_InitTypeDef DMA_InitStructure;
-    DMA_InitStructure.DMA_Channel = DMA_Channel_0;// 内存到内存传输可用任意通道
-    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&ADC_Num1;// 源地址
-    DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)&ADC_Num2;// 目标地址
-    DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToMemory;// 内存到内存模式
-    DMA_InitStructure.DMA_BufferSize = 135;// 传输数据量(135字节)
-    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Enable;// 源地址递增
-    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;// 目标地址递增
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;// 字节传输
-    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;// 字节传输
-    DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;// 正常模式(非循环)
-    DMA_InitStructure.DMA_Priority = DMA_Priority_High;// 高优先级
-    DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;// 禁用FIFO
-    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull; 
-    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;//单次传输
-    DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single; 
-    DMA_Init(DMA2_Stream1, &DMA_InitStructure);
-    // 使能传输完成中断
-    DMA_ITConfig(DMA2_Stream1, DMA_IT_TC, ENABLE);
-}
+    DMA_InitStructure.DMA_Channel = DMA_Channel_0;//选择DMA通道0
+    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&ADC1->DR;//设置外设地址
+    DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)(uint8_t*)adc_buffer0;//设置第一个内存缓冲区的起始地址
+    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;//设置数据传输方向为从外设到内存
+    DMA_InitStructure.DMA_BufferSize = ADC_BUFFER_SIZE;//设置DMA传输的数据量
+    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;//禁止外设地址增量
+    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;//使能内存地址增量
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;//设置外设数据宽度为字节
+    DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;//设置内存数据宽度为字节
+    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;//设置DMA为循环模式
+    DMA_InitStructure.DMA_Priority = DMA_Priority_High;//设置DMA优先级为高
+    DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;//禁用FIFO模式
+    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;//设置FIFO阈值为半满
+    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;//设置内存突发传输为单次传输
+    DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;//设置外设突发传输为单次传输
+    // 初始化DMA
+    DMA_Init(DMA2_Stream0, &DMA_InitStructure);
+    printf("DMA_OK\n");
 
-/**
-  * @brief NVIC中断配置
-  */
-void DMA_135_NVIC_Configuration(void)
-{
+    // 配置双缓冲区模式
+    DMA_DoubleBufferModeConfig(DMA2_Stream0, (uint32_t)(uint8_t*)adc_buffer1, DMA_Memory_0);
+    DMA_DoubleBufferModeCmd(DMA2_Stream0, ENABLE);
+    printf("Double Buffer Mode Enabled\n");
+
+    // 配置DMA中断
+    DMA_ClearITPendingBit(DMA2_Stream0, DMA_IT_TC | DMA_IT_TE);//清除中断标志   
+
+    DMA_ITConfig(DMA2_Stream0, DMA_IT_TC | DMA_IT_TE, ENABLE);
+    //使能传输完成(TC)、半传输完成(HT)和传输错误(TE)中断
+
+    // 配置NVIC
     NVIC_InitTypeDef NVIC_InitStructure;
-    // 配置DMA传输完成中断
-    NVIC_InitStructure.NVIC_IRQChannel = DMA2_Stream1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannel = DMA2_Stream0_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
+    
+    // 使能DMA流
+    DMA_Cmd(DMA2_Stream0, ENABLE);
+    printf("DMA Stream Enabled\n");
 }
 
-/**
-  * @brief DMA2 Stream1中断处理
-  */
-void DMA2_Stream1_IRQHandler(void)
+// DMA2 Stream0中断服务程序
+void DMA2_Stream0_IRQHandler(void)
 {
-    // 检查传输完成标志
-    if (DMA_GetITStatus(DMA2_Stream1, DMA_IT_TCIF1)) {
-        // 清除传输完成标志
-        DMA_ClearITPendingBit(DMA2_Stream1, DMA_IT_TCIF1);
-        // 设置传输完成标志
-        DMA_135_Sign = 0;
+    // 检查传输完成中断
+    if (DMA_GetITStatus(DMA2_Stream0, DMA_IT_TCIF0))
+    {
+        DMA_ClearITPendingBit(DMA2_Stream0, DMA_IT_TCIF0);
+        //DMA_IT_ 是前缀，TC 表示传输，IF 表示中断标志，0 是标志位在寄存器中的位置索引。
+        if(DMA_GetCurrentMemoryTarget(DMA2_Stream0) == DMA_Memory_0)
+        {
+            current_buffer = &adc_buffer0[0];
+        }
+        else
+        {
+            current_buffer = &adc_buffer1[0];
+        }
+        dma_complete = 1;  // 设置传输完成标志
+    }
+
+    // 检查传输错误中断
+    if (DMA_GetITStatus(DMA2_Stream0, DMA_IT_TEIF0))
+    {
+        DMA_ClearITPendingBit(DMA2_Stream0, DMA_IT_TEIF0);
+        // 处理DMA错误
+        // 可以在这里重新初始化DMA
+        printf("TE Interrupt - DMA Error!\n");
     }
 }
-
 
 

@@ -62,7 +62,6 @@ void KeyEXTI_Init(void)
     TIM_Cmd(TIM3,ENABLE);
 }
 
-
 volatile uint32_t timerCount = 0;// 定时器累计值
 
 #define DEBOUNCE_THRESHOLD 20    // 消抖阈值(ms)
@@ -76,7 +75,7 @@ void EXTI0_IRQHandler(void)
         // 首次按下或超过抖动周期
         if(currentTime == 0 || currentTime > DEBOUNCE_THRESHOLD) //首次按下 或者 按键时间超过有效值
         {
-            KeyEXTI = 1;  // 标记有效按键
+            //KeyEXTI = 1;  // 标记有效按键
         }        
         TIM_SetCounter(TIM3, 0);//重置定时器
         TIM_Cmd(TIM3, ENABLE); // 重新启用定时器
@@ -89,7 +88,7 @@ void TIM3_IRQHandler(void)
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) == SET)
     {
         TIM_ClearITPendingBit(TIM3, TIM_IT_Update);// 超过按键周期，复位状态
-        KeyEXTI = 0;
+        //KeyEXTI = 0;
         TIM_Cmd(TIM3, DISABLE); // 关闭定时器
         TIM_SetCounter(TIM3, 0); // 计数器清零
     }

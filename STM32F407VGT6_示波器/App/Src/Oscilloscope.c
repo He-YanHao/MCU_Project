@@ -1,45 +1,52 @@
 #include "Oscilloscope.h"
 
-//ADC_Num1接收数据
-void Oscilloscope_Num(void)
+void Oscilloscope_Grid(void)
 {
-    for(uint8_t i = 0; i < 135; i++)
+    for(int16_t i = 0; i <= 104; i+=8)
     {
-        ADC_Num1[i] = Get_ADC_Value()/39;
-        Delay_us(Delay_Num[Delay_Leve]);
+        for(int16_t j = 0; j < 64; j+=8)
+        {
+            OLED_DrawPoint(i, j, 1);
+        }
     }
 }
 
-void Num1_to_Num2(void)
-{
-    for(uint8_t i = 0; i < 135; i++)
-    {
-        ADC_Num2[i] = ADC_Num1[i];
-    }
-}
+uint16_t ExtremeData[2] = {0};
+//ExtremeData[0] == MAX
+//ExtremeData[1] == MIN
 
-void Delay_Leve_Change(void)
+uint16_t *GetData()
 {
-    if(KeyEXTI == 1)
+    ExtremeData[0] = 0;//MAX
+    ExtremeData[1] = 0xFFFF;//MIN
+    for(uint16_t i = 0; i < ADC_BUFFER_SIZE; i++)
     {
-        if(Delay_Leve >= 11)
+        if(current_buffer[i] > ExtremeData[0])
         {
-            Delay_Leve = 0;
-        }
-        else
+            ExtremeData[0] = current_buffer[i];
+        } else if(current_buffer[i] < ExtremeData[1])
         {
-            Delay_Leve++;
-        }
-        while(KeyEXTI != 0)// 等待定时器复位标志
-        { 
-            
+            ExtremeData[1] = current_buffer[i];
         }
     }
+    return &ExtremeData[0];
 }
 
 void Oscilloscope(void)
 {
-    Oscilloscope_Num();//接收数据
-    Oscilloscope_Change();//改变图像 清除单个像素上一次图像后立即制作单个像素这一次图像
-    Num1_to_Num2();//搬运数据
+    if(1 == dma_complete)
+    {
+        dma_complete = 0;//�����־λ
+        Oscilloscope_Grid();//ʾ��������
+        for(int16_t i = 0; i < ADC_BUFFER_SIZE; i++)//д����
+        {
+            OLED_DrawPoint(i, 63-current_buffer[i]/4, 1);
+        }
+        OLED_ShowString(110,0,"MAX",12,1);
+        OLED_ShowNum(110,12,*GetData(),3,12,1);//MAX
+        OLED_ShowString(110,30,"MIN",12,1);
+        OLED_ShowNum(110,42,*(GetData()+1),3,12,1);//MIN
+        OLED_Refresh();//д�Դ�
+        OLED_ClearFresh();//����Դ�
+    }
 }

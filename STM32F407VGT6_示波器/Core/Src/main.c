@@ -3,14 +3,16 @@
 int main(void)
 {
     board_Init();//开发板上所有外设初始化
-    LCD_Init();
+    Delay_ms(50);
+    OLED_Init();
+    OLED_Clear();
     MyADC_Init();
-    LCD_Clear(WHITE);
-    Oscilloscope_UI_Init();
+    MyDMA_Init();
+    //ADC开始扫描
+    ADC_SoftwareStartConv(ADC1);
     while(1)
     {
         Oscilloscope();
-        //Delay_Leve_Change();
-        //Oscilloscope_Num_OUT();
+        //printf("%d\n",dma_complete);
     }
 }

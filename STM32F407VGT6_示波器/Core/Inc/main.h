@@ -2,21 +2,21 @@
 #define __MAIN_H
 
 #include "stm32f4xx.h"
+#include "stdio.h"
 #include "Delay.h"
 #include "board.h"
-#include "board_Key.h"
 #include "board_LED.h"
-#include "LCD.h"
-#include "MyADC.h"
-#include "MyDMA.h"
+#include "OLED.h"
 #include "MyADC.h"
 #include "Oscilloscope.h"
-#include "Oscilloscope_UI.h"
+#include "MyDMA.h"
 
-uint8_t ADC_Num1[135] = {0};
-uint8_t ADC_Num2[135] = {0};
-uint16_t Delay_Num[11] = {0,1,2,5,10,20,50,100,200,500,1000};
-uint8_t Delay_Leve = 0;
-uint8_t KeyEXTI = 0;
+// 标志变量
+extern volatile uint8_t dma_complete;       // 传输完成标志
+extern volatile uint8_t *current_buffer;       // 指向当前可用的缓冲区
+
+// 定义两个缓冲区
+extern volatile uint8_t adc_buffer0[ADC_BUFFER_SIZE];
+extern volatile uint8_t adc_buffer1[ADC_BUFFER_SIZE];
 
 #endif

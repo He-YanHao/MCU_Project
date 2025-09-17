@@ -2,10 +2,11 @@
 #define __BOARD_LED_H
 
 #include "stm32f4xx.h"
+#include "stdio.h"
 
-void LED_Init(void);
-void LED_ON(void);
-void LED_OFF(void);
-void LED_Toggle(void);
+void BSP_LED_Init(void);
+void BSP_LED_ON(void);
+void BSP_LED_OFF(void);
+void BSP_LED_Toggle(void);
 
 #endif

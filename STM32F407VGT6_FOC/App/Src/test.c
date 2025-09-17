@@ -2,7 +2,7 @@
 
 extern PID_NUM MyPID;
 
-void TIMER_Init()
+void TIMER_Init(void)
 {
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM7, ENABLE);
     //定时器初始化

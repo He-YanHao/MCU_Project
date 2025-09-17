@@ -2,19 +2,19 @@
 #define __OSCILLOSCOPE_H
 
 #include "stm32f4xx.h"
-#include "Delay.h"
-#include "MyADC.h"
+#include "OLED.h"
 #include "MyDMA.h"
-#include "Oscilloscope_UI.h"
+#include "stdio.h"
 
-extern uint8_t ADC_Num1[135];
-extern uint8_t ADC_Num2[135];
-extern uint16_t Delay_Num[];
-extern uint8_t Delay_Leve;
-extern uint8_t KeyEXTI;
+// 定义两个缓冲区
+extern volatile uint8_t adc_buffer0[ADC_BUFFER_SIZE];
+extern volatile uint8_t adc_buffer1[ADC_BUFFER_SIZE];
 
-void Oscilloscope_Num(void);
+// 标志变量
+extern volatile uint8_t dma_complete;       // 传输完成标志
+extern volatile uint8_t *current_buffer;       // 指向当前可用的缓冲区
+
+void Oscilloscope_Grid(void);
 void Oscilloscope(void);
-void Delay_Leve_Change(void);
 
 #endif
