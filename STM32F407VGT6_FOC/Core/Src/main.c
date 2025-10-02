@@ -19,22 +19,27 @@ int main()
     MyFOC_NUM.theta = 5;   //½Ç¶È
     while(1)
     {
-        //MyFOC_NUM.U_q += 0.5;
-        //MyFOC_NUM.U_q = U_q_Change(MyFOC_NUM.U_q);
-        MyFOC_NUM.theta += 0.01;
-        Theta_Change(MyFOC_NUM.theta);
-        NOT_Ud_Change(MyFOC_NUM.U_q, MyFOC_NUM.theta);
-
-        Change_PWM1(PWM_BIT*MyFOC_NUM.DC_a);
-        Change_PWM2(PWM_BIT*MyFOC_NUM.DC_b);
-        Change_PWM3(PWM_BIT*MyFOC_NUM.DC_c);
-
-        Delay_us(50);
-        if(add_or())
+        for(uint16_t i = 4095; i >= 0; i--)
         {
-            //printf("CountSensorCount:%d\n",CountSensorCount);   
+            Change_PWM1(i);
+            Delay_ms(10);
         }
-        //printf("U_q:%.2f theta:%.2f U_a:%.2f U_b:%.2f U_c:%.2f\n",MyFOC_NUM.U_q,MyFOC_NUM.theta,MyFOC_NUM.U_a,MyFOC_NUM.U_b,MyFOC_NUM.U_c);
-        //printf("U_alpha:%.2f U_beta:%.2f DC_a:%.2f DC_b:%.2f DC_c:%.2f\n",MyFOC_NUM.U_alpha,MyFOC_NUM.U_beta,MyFOC_NUM.DC_a,MyFOC_NUM.DC_b,MyFOC_NUM.DC_c);
+//        //MyFOC_NUM.U_q += 0.5;
+//        //MyFOC_NUM.U_q = U_q_Change(MyFOC_NUM.U_q);
+//        MyFOC_NUM.theta += 0.01;
+//        Theta_Change(MyFOC_NUM.theta);
+//        NOT_Ud_Change(MyFOC_NUM.U_q, MyFOC_NUM.theta);
+
+//        Change_PWM1(PWM_BIT*MyFOC_NUM.DC_a);
+//        Change_PWM2(PWM_BIT*MyFOC_NUM.DC_b);
+//        Change_PWM3(PWM_BIT*MyFOC_NUM.DC_c);
+
+//        Delay_us(50);
+//        if(add_or())
+//        {
+//            //printf("CountSensorCount:%d\n",CountSensorCount);   
+//        }
+//        //printf("U_q:%.2f theta:%.2f U_a:%.2f U_b:%.2f U_c:%.2f\n",MyFOC_NUM.U_q,MyFOC_NUM.theta,MyFOC_NUM.U_a,MyFOC_NUM.U_b,MyFOC_NUM.U_c);
+//        //printf("U_alpha:%.2f U_beta:%.2f DC_a:%.2f DC_b:%.2f DC_c:%.2f\n",MyFOC_NUM.U_alpha,MyFOC_NUM.U_beta,MyFOC_NUM.DC_a,MyFOC_NUM.DC_b,MyFOC_NUM.DC_c);
     }
 }
