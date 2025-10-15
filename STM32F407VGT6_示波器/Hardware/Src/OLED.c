@@ -284,6 +284,68 @@ void OLED_ShowNum(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1,uin
   }
 }
 
+int countDigits3(int num)
+{
+    if (num == 0) return 1;
+    if (num < 0) num = -num;
+    
+    if (num < 10) return 1;
+    if (num < 100) return 2;
+    if (num < 1000) return 3;
+    if (num < 10000) return 4;
+    if (num < 100000) return 5;
+    if (num < 1000000) return 6;
+    if (num < 10000000) return 7;
+    if (num < 100000000) return 8;
+    if (num < 1000000000) return 9;
+    return 10;
+}
+
+uint32_t cifang(uint8_t a)
+{
+    uint32_t r = 1;
+    while(1)
+    {
+        r = 10 * r;
+        a--;
+        if(a <= 0)
+        {
+            return r;
+        }
+    }
+}
+
+void OLED_ShowFloatNum(uint8_t x,uint8_t y,float num,uint8_t len,uint8_t size1,uint8_t mode)
+{
+    uint8_t charlen = 0;
+    switch(size1)//处理加负号后的移位
+    {
+        case 8 : charlen += 6; break;
+        case 12: charlen += 6; break;
+        case 16: charlen += 8; break;
+        case 24: charlen += 12; break;
+        default: ;
+    }
+    if (num < 0) //假如要显示的数字小于0就按照加负号反转按大于的方式处理
+    {
+        num = -num;
+        OLED_ShowChar(x, y, '-', size1, mode);//写负号
+        OLED_ShowFloatNum(x+charlen, y, num, len-1, size1, mode);
+        return;
+    }
+    uint8_t count = 0;
+    count = countDigits3(num);
+    if( count+1 > len)
+    {
+        OLED_ShowString(x,y,(uint8_t*)"error",size1,mode);//整数位数比显示总长度还长
+        return;
+    }
+    OLED_ShowNum(x,y,(uint32_t)num,count,size1,mode);//写整数
+    OLED_ShowChar((x+charlen*count),y,'.',size1,mode);//写小数点
+    num = (num - (uint32_t)num)*(cifang(len-count-1));
+    OLED_ShowNum((x+charlen*(count+1)),y,(uint32_t)num,len-count-1,size1,mode);//写小数
+}
+
 //显示汉字
 //x,y:起点坐标
 //num:汉字对应的序号

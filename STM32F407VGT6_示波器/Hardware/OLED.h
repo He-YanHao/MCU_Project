@@ -53,8 +53,10 @@ void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t chr,uint8_t size1,uint8_t mode);
 //在指定位置显示一个字符,包括部分字符 
 //x:0~127 y:0~63 size1:选择字体 6x8/6x12/8x16/12x24 mode:0,反色显示;1,正常显示
 void OLED_ShowString(uint8_t x,uint8_t y,uint8_t *chr,uint8_t size1,uint8_t mode);
-//显示字符串 x,y:起点坐标 *chr:字符串起始地址 size1:字体大小 mode:0,反色显示;1,正常显示
+//显示字符串 x,y:起点坐标 *chr:字符串起始地址 size1:字体大小  mode:0,反色显示;1,正常显示
 void OLED_ShowNum(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1,uint8_t mode);
+//显示数字 x,y:起点坐标 num:要显示的数字 len:数字的位数 size:字体大小 mode:0,反色显示;1,正常显示
+void OLED_ShowFloatNum(uint8_t x,uint8_t y,float num,uint8_t len,uint8_t size1,uint8_t mode);
 //显示数字 x,y:起点坐标 num:要显示的数字 len:数字的位数 size:字体大小 mode:0,反色显示;1,正常显示
 void OLED_ShowChinese(uint8_t x,uint8_t y,uint8_t num,uint8_t size1,uint8_t mode);
 //显示汉字 x,y:起点坐标 num:汉字对应的序号 mode:0,反色显示;1,正常显示
