@@ -13,6 +13,5 @@ int main(void)
     while(1)
     {
         Oscilloscope();
-        //printf("%d\n",dma_complete);
     }
 }
