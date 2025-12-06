@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "nrf24l01_spi.h": "c",
-        "main.h": "c",
-        "nrf24l01.h": "c",
-        "board_led.h": "c"
-    }
-}
