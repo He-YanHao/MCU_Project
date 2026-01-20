@@ -1,0 +1,8 @@
+# 编译输出目录
+build/
+
+# 版本控制工具文件
+.vs/
+.vscode/
+.devcontainer/
+

@@ -1,5 +1,6 @@
 # Keil MDK 生成文件
 *.uvgui.*
+*.uvguix.*
 *.uvopt
 *.uvproj.user
 *.uvprojx.local
@@ -19,16 +20,16 @@
 *.build_log.htm
 
 # 编译输出目录
-/Output/
-/Listings/
-/Objects/
+Output/
+Listings/
+Objects/
 
 # 调试文件
 *.ini
 *.dbg
 *.cdb
 
-# 本地用户设置（不同开发者可能不同）
+# 本地用户设置
 *.workspace
 *.local
 
