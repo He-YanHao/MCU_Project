@@ -543,11 +543,11 @@ SD_Error SD_Init(void)
     errorstatus = SD_SelectDeselect((uint32_t) (SDCardInfo.RCA << 16));	  
   }
 
-  if (errorstatus == SD_OK)
-  {
-			/* 最后为了提高读写，开启4bits模式 */
-    errorstatus = SD_EnableWideBusOperation(SDIO_BusWide_4b);
-  }  
+//  if (errorstatus == SD_OK)
+//  {
+//			/* 最后为了提高读写，开启4bits模式 */
+//    errorstatus = SD_EnableWideBusOperation(SDIO_BusWide_4b);
+//  }  
 
   return(errorstatus);
 }
