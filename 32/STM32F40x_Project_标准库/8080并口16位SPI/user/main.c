@@ -12,8 +12,10 @@ void LED_CS()
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//无上拉无下拉
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
+
 #define LCD_LED_ON	GPIO_SetBits(GPIOB,GPIO_Pin_2)//置为高电平
 #define LCD_LED_OFF	GPIO_ResetBits(GPIOB,GPIO_Pin_2)//置为低电平
+
 int main()
 {
     board_init();
@@ -27,6 +29,8 @@ int main()
 
     while(1)
     {
-
+    LCD_LED_OFF;
+	delay_ms(1000);
+	LCD_LED_ON;
     }
 }
